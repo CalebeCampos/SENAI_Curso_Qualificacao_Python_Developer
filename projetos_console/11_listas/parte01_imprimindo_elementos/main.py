@@ -1,6 +1,6 @@
 
 # lista de nomes
-nomes = ["Alice", "Bob", "Charlie", "David", "Eve"]
+nomes = ["Charlie", "Eve", "Alice", "David", "Bob"]
 
 # imprimindo a lista original
 print(f"Lista original: {nomes}")
@@ -20,7 +20,11 @@ print("Lista com loop for:")
 for nome in nomes:
     print(nome)
 
-
+# ordeando os elementos da lista
+nomes.sort()
+print(f"Lista ordenada: {nomes}")
+# for nome in nomes:
+#     print(nome)
 
 
 # lista de números com um elemento que é uma lista
