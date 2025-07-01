@@ -45,16 +45,17 @@ while True:
         case "1":
             try:
                 usuario = {
-                    tupla_chaves_usuario[0]: input("Nome completo: ").strip(),
+                    tupla_chaves_usuario[0]: input("Nome completo: ").strip().title(),
                     tupla_chaves_usuario[1]: input("Data de nascimento (dd/mm/aaaa): ").strip(),
-                    tupla_chaves_usuario[2]: input("Email: ").strip(),
+                    tupla_chaves_usuario[2]: input("Email: ").strip().lower(),
                     tupla_chaves_usuario[3]: input("CPF: ").strip(),
                     tupla_chaves_usuario[4]: input("Telefone: ").strip(),
-                    tupla_chaves_usuario[5]: input("Gênero: ").strip(),
+                    tupla_chaves_usuario[5]: input("Gênero: ").strip().title(),
                     tupla_chaves_usuario[6]: datetime.now().strftime("%d/%m/%Y"),
                     tupla_chaves_usuario[7]: datetime.now().strftime("%H:%M:%S")
                 }
                 lista_de_usuarios.append(usuario)
+                os.system('cls' if os.name == 'nt' else 'clear')
                 print("Usuário cadastrado com sucesso!\n")
             except Exception as e:
                 print(f"Ocorreu um erro ao tentar cadastrar o novo usuario. Erro: {e}")
@@ -83,13 +84,37 @@ while True:
             try:
                 indice_usuario_alterar = int(input("Informe o indice do usuario que deseja alterar: ").strip())
                 if indice_usuario_alterar >= 0 and indice_usuario_alterar < len(lista_de_usuarios):
-                    chave_usuario_alterar = input("Informe o nome da chave do usuario que deseja alterar: ").strip().capitalize()
-                    if chave_usuario_alterar in lista_de_usuarios[indice_usuario_alterar]:
-                        novo_valor_chave_usuario_alterar = input(f"Digite o novo valor para '{chave_usuario_alterar}': ").strip()
-                        lista_de_usuarios[indice_usuario_alterar][chave_usuario_alterar] = novo_valor_chave_usuario_alterar
-                        print("Alteração realizada com sucesso!\n")
-                    else:
-                        print(f"A chave '{chave_usuario_alterar}' não existe no dicionário.\n")
+
+                    while True:
+
+                        # exibe os dados do usuario referente ao indice informado
+                        for chave in lista_de_usuarios[indice_usuario_alterar]:
+                            print(f"{chave.capitalize()}: {lista_de_usuarios[indice_usuario_alterar].get(chave)}")
+                        print("\n")
+
+                        chave_usuario_alterar = input("Informe o nome da chave do usuario que deseja alterar: ").strip().capitalize()
+                        if chave_usuario_alterar in lista_de_usuarios[indice_usuario_alterar]:
+                            novo_valor_chave_usuario_alterar = input(f"Digite o novo valor para '{chave_usuario_alterar}': ").strip().title()
+                            lista_de_usuarios[indice_usuario_alterar][chave_usuario_alterar] = novo_valor_chave_usuario_alterar
+                            os.system('cls' if os.name == 'nt' else 'clear')
+                            print("Alteração realizada com sucesso!\n")
+                        else:
+                            print(f"A chave '{chave_usuario_alterar}' não existe no dicionário.\n")
+                        
+                        while True:
+                            prosseguir_alteracao = input("Deseja alterar outra chave: (s/n); ").strip().lower()
+                            if prosseguir_alteracao == 's' or prosseguir_alteracao == 'n':
+                                break
+                            else:
+                                print("Opção invalida!\n")
+                                continue
+                        
+                        match prosseguir_alteracao:
+                            case "s":
+                                continue
+                            case "n":
+                                break
+
                 else:
                     print(f"O indice '{indice_usuario_alterar}' não existe!\n")
             except Exception as e:
@@ -109,7 +134,7 @@ while True:
                         print(f"{chave.capitalize()}: {dicionario_usuario_sorteado[chave]}")
                     print("\n")
             except Exception as e:
-                print(f"Ocorreu um erro ao tentar sortear um usuario. Erro: {e}")
+                print(f"Ocorreu um erro ao tentar sortear um usuário. Erro: {e}")
             finally:
                 continue
         
@@ -117,14 +142,33 @@ while True:
         case "5":
             try:
                 indice_usuario_excluir = int(input("Informe o indice do usuario que deseja excluir: ").strip())
-                dicionario_usuario_excluir = lista_de_usuarios[indice_usuario_excluir]
                 if indice_usuario_excluir >= 0 and indice_usuario_excluir < len(lista_de_usuarios):
-                    del(lista_de_usuarios[indice_usuario_excluir])
-                    print(f"Usuario '{dicionario_usuario_excluir.get('Nome')}' excluido com sucesso!\n")
+
+                    # exibe os dados do usuario referente ao indice informado
+                    for chave in lista_de_usuarios[indice_usuario_excluir]:
+                        print(f"{chave.capitalize()}: {lista_de_usuarios[indice_usuario_excluir].get(chave)}")
+                    print("\n")
+
+                    while True:
+                        prosseguir_exclusao = input(f"Tem certeza que deseja excluir este usuario? (s/n): ").strip().lower()
+                        if prosseguir_exclusao == "s" or prosseguir_exclusao == "n":
+                            break
+                        else:
+                            print("Opção invalida!")
+                            continue
+                    
+                    match prosseguir_exclusao:
+                        case "s":
+                            dicionario_usuario_excluir = lista_de_usuarios[indice_usuario_excluir]
+                            del(lista_de_usuarios[indice_usuario_excluir])
+                            print(f"Usuario '{dicionario_usuario_excluir.get('Nome')}' excluido com sucesso!\n")
+                        case "n":
+                            print("Usuario nao excluido!")
+
                 else:
                     print(f"O indice '{indice_usuario_excluir}' não existe!\n")
             except Exception as e:
-                print(f"Ocorreu um erro ao tentar excluir o usuário. Erro: {e}")
+                print(f"Ocorreu um erro ao tentar excluir um usuário. Erro: {e}")
             finally:
                 continue
         

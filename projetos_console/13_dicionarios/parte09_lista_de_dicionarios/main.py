@@ -19,6 +19,11 @@ usuarios = [
     }
 ]
 
+# exibindo o valor de uma chave específica de um dicionário
+print(usuarios[2]["profissao"])
+print("\n")
+print(usuarios[2].get("profissao"))
+print("\n")
 
 # exibindo a lista de dicionários usando um loop for dentro de outro loop for
 print("Lista de usuários:")
@@ -27,8 +32,17 @@ for usuario in usuarios:
         print(f"{chave.capitalize()}: {usuario[chave]}")
     print("\n")
 
-# exibindo o valor de uma chave específica de um dicionário
-print(usuarios[2]["profissao"])
-print("\n")
-print(usuarios[2].get("profissao"))
-print("\n")
+# exibindo a lista de dicionários com o respectivo indice usando um loop for dentro de outro loop for
+print("Lista de usuários usando range(len(lista)):\n")
+for i in range(len(usuarios)):
+    print(f"Indice: {i}")
+    for chave in usuarios[i]:
+        print(f"{chave.capitalize()}: {usuarios[i].get(chave)}")
+    print('-'*60)
+
+print("Lista de usuários (usando lista.index()):\n")
+for usuario in usuarios:
+    print(f"Indice: {usuarios.index(usuario)}")
+    for chave in usuario:
+        print(f"{chave.capitalize()}: {usuario[chave]}")
+    print("-"*60)
