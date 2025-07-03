@@ -9,7 +9,7 @@ while True:
         # usuario informa o diretorio do arquivo
         diretorio_arquivo_informado = input("Informe o diretorio onde este arquivo está salvo: ").strip()
         # lendo o arquivo
-        with open(f"{diretorio_arquivo_informado}/{nome_arquivo_informado}.txt", "r", encoding="utf-8") as t:
+        with open(f"{diretorio_arquivo_informado}{nome_arquivo_informado}.txt", "r", encoding="utf-8") as t:
             arquivo_informado = t.read()
         os.system("cls" if os.name == "nt" else "clear")
         

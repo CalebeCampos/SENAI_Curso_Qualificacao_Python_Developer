@@ -3,14 +3,14 @@ import json
 try:
     nome_arquivo = input("Informe o nome do arquivo (sem extensão): ").strip().lower()
     diretorio_arquivo = input("Informe o diretorio onde o arquivo está salvo: ").strip()
-    # diretorio: 02_projetos_manipulacao_arquivos/02_manipulando_json
+    # diretorio: 02_projetos_manipulacao_arquivos/02_manipulando_json/
 
     ######################################################################
     ##########                LENDO O ARQUIVO JSON              ##########
     ######################################################################
 
     # lendo o arquivo json e dessarializa em um dicionario do python
-    with open(f"{diretorio_arquivo}/{nome_arquivo}.json", "r", encoding="utf-8") as t:
+    with open(f"{diretorio_arquivo}{nome_arquivo}.json", "r", encoding="utf-8") as t:
         lista = json.load(t) # cria a lista de dicionarios em python
 
     ######################################################################
@@ -28,7 +28,7 @@ try:
     ######################################################################
     
     # serializa o dicionadio em json e grava a alteracao no arquivo json
-    with open(f"{diretorio_arquivo}/{nome_arquivo}.json", "w", encoding="utf-8") as t:
+    with open(f"{diretorio_arquivo}{nome_arquivo}.json", "w", encoding="utf-8") as t:
         json.dump(lista,  t, ensure_ascii=False, indent=4)
 
     ######################################################################
@@ -36,7 +36,7 @@ try:
     ######################################################################
 
     # lendo o arquivo json novamente apos gravacao da alteracao
-    with open(f"{diretorio_arquivo}/{nome_arquivo}.json", "r", encoding="utf-8") as t:
+    with open(f"{diretorio_arquivo}{nome_arquivo}.json", "r", encoding="utf-8") as t:
         lista = json.load(t) # cria a lista de dicionarios em python
 
     # saida dos dados

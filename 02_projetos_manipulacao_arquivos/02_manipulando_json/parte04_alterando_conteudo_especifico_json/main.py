@@ -6,7 +6,7 @@ try:
     # diretorio: 02_projetos_manipulacao_arquivos/02_manipulando_json
 
     # lendo o arquivo json e dessarializa em um dicionario do python
-    with open(f"{diretorio_arquivo}/{nome_arquivo}.json", "r", encoding="utf-8") as t:
+    with open(f"{diretorio_arquivo}{nome_arquivo}.json", "r", encoding="utf-8") as t:
         lista = json.load(t) # cria a lista de dicionarios em python
 
     # alterando a altura e o peso de todos os itens da lista

@@ -5,7 +5,7 @@ while True:
         texto_novo_arquivo = input("Digite o texto a ser salvo: \n")
         nome_novo_arquivo = input("Informe o nome do arquivo (sem extensao): ").strip().lower()
         diretorio_novo_arquivo = input("Informe o diretorio onde este arquivo deverá ser salvo: ").strip()
-        with open(f"{diretorio_novo_arquivo}/{nome_novo_arquivo}.txt", "w", encoding="utf-8") as t:
+        with open(f"{diretorio_novo_arquivo}{nome_novo_arquivo}.txt", "w", encoding="utf-8") as t:
             t.write(texto_novo_arquivo)
         os.system("cls" if os.name == "nt" else "clear")
         print(f"{nome_novo_arquivo}.txt gravado com sucesso!")
