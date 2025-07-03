@@ -1,0 +1,20 @@
+[
+    {
+        "nome": "Calebe",
+        "idade": 35,
+        "profissao": "dba",
+        "email": "calebe_josue@hotmail.com"
+    },
+    {
+        "nome": "Eduardo",
+        "idade": 12,
+        "profissao": "estudante",
+        "email": "edugamer@gmail.com"
+    },
+    {
+        "nome": "Manuela",
+        "idade": 1,
+        "profissao": "estudante",
+        "email": "manuribeirocampos@gmail.com"
+    }
+]
