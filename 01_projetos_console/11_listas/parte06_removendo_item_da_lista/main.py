@@ -13,13 +13,13 @@ frutas = [
 ]
 
 
-# imprimando o indice de cada elemento da lista
+# imprimindo o indice de cada elemento da lista
 print("\nLista de frutas com os indices:")
 for i in range(len(frutas)):
     print(f"Indice {i}: {frutas[i]}")
 
 try:
-    indice = int(input(f"\nDigite o indice do elemento que deseja alterar (0 a {len(frutas) - 1}): "))
+    indice = int(input(f"\nDigite o indice do elemento que deseja excluir (0 a {len(frutas) - 1}): "))
     if indice < 0 or indice >= len(frutas):
         print("\nIndice invalido!")
     else:

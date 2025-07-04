@@ -55,3 +55,9 @@ for usuario in usuarios:
     print('-'*40)
 print("\n")
 
+
+# exibindo todos os dados de cada dicionario da lista
+for usuario in usuarios:
+    for chave in usuario:
+        print(f"{chave}: {usuario.get(chave)}")
+    print('-'*40)

@@ -1,0 +1,34 @@
+[
+    {
+        "Nome": "Calebe Campos",
+        "Data de Nascimento": "02/04/1990",
+        "CPF": "026.752.951-16",
+        "E-mail": "calebe@gmail.com",
+        "Telefone": "061992223312",
+        "Filme Favorito": "13º Distrito"
+    },
+    {
+        "Nome": "Eduardo Ribeiro",
+        "Data de Nascimento": "13/05/2013",
+        "CPF": "055.255.144-01",
+        "E-mail": "eduardo@gmail.com",
+        "Telefone": "061992223312",
+        "Filme Favorito": "Fnaf"
+    },
+    {
+        "Nome": "Manuela Ribeiro",
+        "Data de Nascimento": "06/02/2024",
+        "CPF": "174.225.014-00",
+        "E-mail": "manuela@gmail.com",
+        "Telefone": "061993854317",
+        "Filme Favorito": "Bolofofos"
+    },
+    {
+        "Nome": "Waldenete Batista",
+        "Data de Nascimento": "14/01/1957",
+        "CPF": "026.752.951-16",
+        "E-mail": "wwwww@gmail.com",
+        "Telefone": "061992223321",
+        "Filme Favorito": "Kkkkkk"
+    }
+]
