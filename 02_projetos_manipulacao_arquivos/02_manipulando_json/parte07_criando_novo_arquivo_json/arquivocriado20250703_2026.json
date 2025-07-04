@@ -1,0 +1,17 @@
+[
+    {
+        "nome": "Juliana Camargos",
+        "idade": 38,
+        "email": "juliana.camargos@gmail.com"
+    },
+    {
+        "nome": "Kleber Pereira",
+        "idade": 42,
+        "email": "kleber.pereira@gmail.com"
+    },
+    {
+        "nome": "Hebert Santos",
+        "idade": 66,
+        "email": "hebert.santos@gmail.com"
+    }
+]
