@@ -27,7 +27,8 @@ if __name__ == '__main__':
                     c = float(input("Digite o valor de c: ").strip().replace(",", "."))
                     mo.limpar_tela()
                     resultados = mo.calcular_equacao_segundo_grau(a, b, c)
-                    # FIXME print(f"Os valores de X para a equação {a}x² + {b}x + {c} = 0, são: {resultados}")
+                    for resultado in resultados:
+                        print(f"{resultado}")
                 except Exception as e:
                     print(f"Ocorreu um erro ao calcular a equação do 2º grau. Erro: {e}")
                 finally:
