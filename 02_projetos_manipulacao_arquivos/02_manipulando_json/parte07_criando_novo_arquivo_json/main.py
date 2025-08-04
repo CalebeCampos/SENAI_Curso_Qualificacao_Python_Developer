@@ -11,7 +11,7 @@ while True:
     try:
         print(f"{'='*20} MENU {'='*20}")
         print("1 - Cadastrar novo usuario")
-        print("2 - Salvar aquivo JSON")
+        print("2 - Salvar arquivo JSON")
         print("3 - Fazer leitura do JSON")
         print("4 - Sair do programa")
         opcao = input("Informe a opção desejada: ")
