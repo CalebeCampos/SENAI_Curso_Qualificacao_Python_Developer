@@ -93,8 +93,6 @@ class ContaCorrente(Conta):
         print(f"CPF: {self.__cpf}")
         print(f"Agencia: {self.__agencia}")
         print(f"Numero: {self.__numero}")
-        #print(f"Saldo: R$ {self.__saldo:.2f}")
-        #print(f"Saldo: R$ {super().__saldo:.2f}")
         print(f"Saldo: R$ {self.saldo:.2f}")
     
     def depositar(self, valor):
