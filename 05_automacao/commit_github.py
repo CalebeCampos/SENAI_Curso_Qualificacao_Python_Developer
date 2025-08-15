@@ -19,7 +19,7 @@ def main():
     usuario = input("Informe seu usuario do gitHub: ").strip()
     email = input("Informe seu email do gitHub: ").strip()
     data_atual = datetime.now().strftime('%Y%m%d')
-    hora_atual = datetime.now().strftime("%H:%M")
+    hora_atual = datetime.now().strftime("%H%M")
     mensagem_commit = f'git commit -m "arquivos criados e alterados ate o dia {data_atual} as {hora_atual}"'
 
     gui.PAUSE = 0.8
