@@ -1,0 +1,8 @@
+
+1) abrir terminal e executar o comando na pasta raiz onde esta a .venv
+pip freeze > requirements.txt
+obs: este comando cria o arquivo requirements.txt na raiz do projeto com todas as bibliotecas e respectivas versoes instaladas no ambiente virtual python .venv
+
+2) abrir terminal e executar o comando na pasta raiz onde esta a .venv
+pip install -r requirements.txt
+obs: este comando instala na .venv todas bibliotecas especificadas no arquivo requirements.txt
