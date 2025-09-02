@@ -1,4 +1,5 @@
 from datetime import datetime
+import pandas as pd
 import os
 
 #limpar_terminal = lambda: os.system("cls" if os.name == "nt" else "clear")
@@ -47,7 +48,7 @@ def pesquisar_pessoas(session, Pessoa):
     print("2 - Nome")
     print("3 - Email")
     print("4 - Data de Nascimento")
-    print("0 - Voltar ao menu principal")
+    print("5 - Voltar ao menu principal")
     campo =  input("Informe o campo a ser pesquisado: ").strip()
     limpar_terminal()
     match campo:
@@ -67,7 +68,7 @@ def pesquisar_pessoas(session, Pessoa):
                 pessoas = session.query(Pessoa).filter(Pessoa.data_nascimento == valor).all()
             except Exception as e:
                 print(f"Não foi possivel pesquisar pela data informada. Erro: {e}")
-        case "0":
+        case "5":
             pass
         case _:
             print("Opção invalida! Tente novamente.")
@@ -84,11 +85,16 @@ def pesquisar_pessoas(session, Pessoa):
         print("Nenhum registro foi encontrado!")
 
 def alterar_dados(session, Pessoa):
+    id_pesquisar = ""
+    email_pesquisar = ""
+    novo_nome = ""
+    novo_email = ""
+    nova_data = ""
     try:
         print(f"{'-'*10}DESEJA PESQUISAR POR QUAL CAMPO{'-'*10}")
         print(f"1 - ID")
         print(f"2 - Email")
-        print(f"0 - Voltar")
+        print(f"3 - Voltar")
         opcao_pesquisa = input("Informe a opção: ").strip()
         limpar_terminal()
         match opcao_pesquisa:
@@ -99,8 +105,8 @@ def alterar_dados(session, Pessoa):
             case "2":
                 email_pesquisar = input("Informe o email: ").strip()
                 pessoa = session.query(Pessoa).filter_by(email=email_pesquisar).first()
-            case "0":
-                pass
+            case "3":
+                print("Pesquisa cancelada!")
             case _:
                 print("Opcao invalida!")
         if pessoa: 
@@ -110,7 +116,7 @@ def alterar_dados(session, Pessoa):
                 print(f"1 - Nome: {pessoa.nome}")
                 print(f"2 - Email: {pessoa.email}")
                 print(f"3 - Data de Nascimento: {pessoa.data_nascimento.strftime("%d/%m/%Y")}")
-                print(f"0 - Voltar")
+                print(f"4 - Voltar/Alterar")
                 opcao_alterar = input("Informe a coluna que deseja alterar: ").strip()
                 limpar_terminal()
                 match opcao_alterar:
@@ -130,21 +136,77 @@ def alterar_dados(session, Pessoa):
                         nova_data = input("Informe a nova data de nascimento (dd/mm/aaaa): ").strip()
                         print(f"Nova data a ser gravada: {nova_data}")
                         continue
-                    case "0":
+                    case "4":
+                        novo_nome = novo_nome if novo_nome != "" else pessoa.nome
+                        novo_email = novo_email if novo_email != "" else pessoa.email
+                        nova_data = datetime.strptime(nova_data, "%d/%m/%Y").date() if nova_data != "" else pessoa.data_nascimento
                         break
                     case _:
                         print("Opcao invalida!")
-                        continue
-
-                  
-                # if novo_nome:
-                #     pessoa.nome = novo_nome
-                
-                # nova_data = datetime.strptime(nova_data, "%d/%m/%Y").date()
-                # session.add(nova_pessoa)
-                # session.commit()
-
+                        continue    
+            pessoa.nome = novo_nome 
+            pessoa.email = novo_email 
+            pessoa.data_nascimento = nova_data
+            session.commit()
+            limpar_terminal()
+            print("Pessoa alterada com sucesso!")
         else:
             print("Pessoa nao encontrada!")
     except Exception as e:
-        print("Nao foi possivel alterar pessoa cadastrada. Erro: {e}")
+        print(f"Nao foi possivel alterar pessoa. Erro: {e}")
+
+
+def excluir_pessoa(session, Pessoa):
+    id_pesquisar = ""
+    email_pesquisar = ""
+    try:
+        print(f"{'-'*10}DESEJA PESQUISAR POR QUAL CAMPO{'-'*10}")
+        print(f"1 - ID")
+        print(f"2 - Email")
+        print(f"3 - Voltar")
+        opcao_pesquisa = input("Informe a opção: ").strip()
+        limpar_terminal()
+        match opcao_pesquisa:
+            case "1":
+                id_pesquisar = input("Informe o ID: ").strip()
+                pessoa = session.query(Pessoa).filter_by(id_pessoa=id_pesquisar).first()
+            case "2":
+                email_pesquisar = input("Informe o email: ").strip()
+                pessoa = session.query(Pessoa).filter_by(email=email_pesquisar).first()
+            case "0":
+                print("Pesquisa cancelada!")
+            case _:
+                print("Opcao invalida!")
+        if pessoa:
+            print(f"{'-'*10}DADOS DA PESSOA PESQUISADA{'-'*10}")
+            print(f"ID: {pessoa.id_pessoa}")
+            print(f"Nome: {pessoa.nome}")
+            print(f"Email: {pessoa.email}")
+            print(f"Data de Nascimento: {pessoa.data_nascimento.strftime("%d/%m/%Y")}")
+            print("\n")
+            opcao_excluir = input("Deseja excluir? 1 (sim) ou 2 (nao): ").strip()
+            limpar_terminal()
+            match opcao_excluir:
+                case "1":
+                    session.delete(pessoa)
+                    session.commit()
+                    print("Pessoa excluida com sucesso!")
+                case "2":
+                    print("Exclusao cancelada!")
+                case _:
+                    print("Opcao invalida!")
+        else:
+            print("Pessoa nao encontrada!")
+    except Exception as e:
+        print(f"Nao foi possivel excluir a pessoa. Erro: {e}")
+
+def exportar_dados_pessoas(engine):
+    try:
+        diretorio = input("Informe o diretorio que deseja salvar o arquivo: ").strip()
+        nome_Arquivo = input("Informe o nome do arquivo sem extensao: ").strip()
+        sql_query = "SELECT * FROM pessoa ORDER BY id_pessoa"
+        data_frame = pd.read_sql_query(sql_query, engine)
+        data_frame.to_csv(f"{diretorio}{nome_Arquivo}.csv", index=False)
+        print("Dados exportados com sucesso!")
+    except Exception as e:
+        print(f"Nao foi exportar os dados. Erro: {e}")

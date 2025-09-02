@@ -23,7 +23,8 @@ def main():
         print("3 - Pesquisar pessoas.")
         print("4 - Alterar cadastro de uma pessoa.")
         print("5 - Excluir cadastro de uma pessoa.")
-        print("6 - Sair do programa.")
+        print("6 - Exportar dados para CSV.")
+        print("7 - Sair do programa.")
         opcao = input("Informe a opcao desejada: ").strip()
         fun.limpar_terminal()
         match opcao:
@@ -38,10 +39,15 @@ def main():
                 fun.pesquisar_pessoas(session=session, Pessoa=Pessoa)
                 continue
             case "4":
-                pass
+                fun.alterar_dados(session=session, Pessoa=Pessoa)
+                continue
             case "5":
-                pass
+                fun.excluir_pessoa(session=session, Pessoa=Pessoa)
+                continue
             case "6":
+                fun.exportar_dados_pessoas(engine=engine)
+                continue
+            case "7":
                 print("Programa finalizado!")
                 break
             case _:
