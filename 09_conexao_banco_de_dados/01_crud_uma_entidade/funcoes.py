@@ -200,7 +200,7 @@ def excluir_pessoa(session, Pessoa):
     except Exception as e:
         print(f"Nao foi possivel excluir a pessoa. Erro: {e}")
 
-def exportar_dados_pessoas(engine):
+def exportar_dados_pessoas_csv(engine):
     try:
         diretorio = input("Informe o diretorio que deseja salvar o arquivo: ").strip()
         nome_Arquivo = input("Informe o nome do arquivo sem extensao: ").strip()
@@ -210,3 +210,22 @@ def exportar_dados_pessoas(engine):
         print("Dados exportados com sucesso!")
     except Exception as e:
         print(f"Nao foi exportar os dados. Erro: {e}")
+
+def exportar_dados_pessoas_excel(session, Pessoa):
+    try:
+        pessoas = session.query(Pessoa).all()
+        # Cria uma lista de dicionários com os dados das pessoas
+        dados = [
+            {
+                "ID": pessoa.id_pessoa,
+                "Nome": pessoa.nome,
+                "E-mail": pessoa.email,
+                "Data de nascimento": pessoa.data_nascimento.strftime("%d/%m/%Y")
+            }
+            for pessoa in pessoas
+        ]
+        df = pd.DataFrame(dados)
+        df.to_excel("09_conexao_banco_de_dados/01_crud_uma_entidade/pessoas.xlsx", index=False)
+        print("Dados exportados para pessoas.xlsx com sucesso.")
+    except Exception as e:
+        print(f"Erro ao exportar dados: {e}")
