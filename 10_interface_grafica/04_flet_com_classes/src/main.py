@@ -9,7 +9,6 @@ class Usuario:
     salario: float
     email: str
 
-
 def main(page: ft.Page):
 
     # propriedades da pagina
@@ -49,8 +48,6 @@ def main(page: ft.Page):
     usuario.email = ft.TextField(label="Email", width=700)
     usuario.salario = ft.TextField(label="Salario", prefix_text="R$ ", width=100, on_submit=preenche_variaveis_saida_usuario)
 
-
-
     page.add(
         ft.SafeArea(
             ft.Container(
@@ -72,6 +69,5 @@ def main(page: ft.Page):
         salario_saida,
         email_saida
     )
-
 
 ft.app(main)
