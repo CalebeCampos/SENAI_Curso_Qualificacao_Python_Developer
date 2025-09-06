@@ -1,3 +1,10 @@
+# pip install flet
+# pip install pyinstaller
+# pip install pillow
+
+# comando para gerar o executavel
+# flet pack .\10_interface_grafica\05_flet_imc\src\main.py --name=imc_app --icon .\10_interface_grafica\05_flet_imc\src\assets\icon_imc.png
+
 import flet as ft
 
 
