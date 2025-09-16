@@ -1,0 +1,62 @@
+COMANDOS INICIAIS
+
+1) instalar a biblioteca django
+pip install django
+
+2) criar projeto django
+django-admin startproject nome_projeto
+
+3) caso vá utilizar outro sgbd diferente do padrao utilizado pelo django que é o sqlite, basta instalar a biblioteca especifica do sgbd para pyhton, exemplo:
+pip install mysqlclient
+
+4) Alterar as configuracoes da base de dados no arquivo settings.py linha 75 DATABASES. Configurar o nome da base de dados.
+Caso vá utilizar varias aplicacoes com sgbd diferentes, basta adicionar um dicionario com as configuracoes de cada base de dados.
+
+5) Entrar na pasta do projeto django
+cd diretorio_projeto_django
+cd .\11_desenvolvimento_web\02_django\projeto_crud\
+
+6) Rodar o servidor django
+python manage.py runserver
+
+7) Abrir no navegador para verificar se o servidor web no ar
+localhost:8000
+127.0.0.1:8000
+Obs: porta padrao do django 8000
+
+8) Abrir a url de administration do django
+localhost:8000/admin
+
+9) Fechar o servidor no terminal
+ctrl + c
+
+10) Criar aplicacao dentro da pasta do projeto django
+python manage.py startapp nome_da_aplicacao
+
+11) Realizar o "migrations" do django
+qualquer alteracoes na base de dados (DDL) é necessario fazer o "migrations" do django
+python manage.py makemigrations
+python manage.py migrate
+
+12) Criar superuser para a tela de administration do django
+python manage.py createsuperuser
+informar o nome do usuario: admin
+informar o email: admin@admin.com
+informar a senha: 123456
+
+13) Rodar o servidor django
+python manage.py runserver
+
+14) Fechar o servidor no terminal
+ctrl + c
+
+
+
+
+APOS CRIAR AS CLASSES NO ARQUIVO nome_do_app/models.py
+
+1) ir no arquivo nome_do_projeto/settings.py, ir no INSTALLED_APPS linha 33 e adicionar o nome da aplicacao 'crud_app'
+
+2) Realizar o "migrations" do django para criar as tabelas da aplicacao 'crud_app' na base de dados
+python manage.py makemigrations
+python manage.py migrate
