@@ -60,3 +60,17 @@ APOS CRIAR AS CLASSES NO ARQUIVO nome_do_app/models.py
 2) Realizar o "migrations" do django para criar as tabelas da aplicacao 'crud_app' na base de dados
 python manage.py makemigrations
 python manage.py migrate
+
+
+
+
+CASO ALTERE AS TABELAS (alteracoes das classes no arquivo: nome_do_app/models.py)
+1) Entrar na pasta do projeto django
+cd diretorio_projeto_django
+cd .\11_desenvolvimento_web\02_django\projeto_crud\
+
+2) Alterar as classes dentro arquivo nome_do_app/models.py
+
+3) Realizar o "migrations" do django
+python manage.py makemigrations
+python manage.py migrate
