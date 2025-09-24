@@ -1,71 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}CRUD - Lista de pessoas cadastradas{% endblock %}
+{% block content %}
 {% load static %}
-
-<!doctype html>
-<html lang="pt-br">
-
-    <head>
-        <meta name="author" content="Calebe Campos">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Projeto CRUD APP</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    </head>
-
-    <body class="bg-dark" data-bs-theme="dark">
-        <!-- INI::Menu -->
-        <nav class="navbar navbar-expand-lg mb-5" data-bs-theme="dark" style="background-color: #16161d;">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <!-- 11_desenvolvimento_web/02_django/projeto_crud/crud_app/templates/assets/img/icon_dev.png -->
-                    <img src="{% static 'img/icon_dev.png' %}" alt="icone_menu_principal" style="margin: -10px 0px;">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/crud_app/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/crud_app/cadastrar">Cadastrar pessoa</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex" role="search" action="{% url 'pesquisar_pessoa' %}" method="GET">
-                        <input class="form-control me-2" type="search" placeholder="Pesquisar pessoas" aria-label="Search" name="input_pesquisar_pessoa"/>
-                        <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-        <!-- FIM::Menu -->
-
-        <!-- INI::lista de pessoas cadastradas -->
-        <div class="container">
-            <h3>Pessoas cadastradas</h3>
-            <hr>
-            <ul>
-                {% for pessoa in pessoas %}
-                    <li>
-                        <b>ID: </b> {{ pessoa.id_pessoa }} | 
-                        <b>Nome: </b> {{ pessoa.nome }} | 
-                        <b>Email: </b> {{ pessoa.email }} | 
-                        <b>CPF: </b> {{ pessoa.cpf }} |
-                        <a href="{% url 'alterar_pessoa' pessoa.id_pessoa %}">Alterar</a> |
-                        <a href="{% url 'excluir_pessoa' pessoa.id_pessoa %}">Excluir</a>
-                    </li>
-                {% empty %}
-                    <li>
-                        Nenhuma pessoa cadastrada!
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <!-- FIM::lista de pessoas cadastradas -->
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    </body>
-
-</html>
+<!-- INI::lista de pessoas cadastradas -->
+<div class="container">
+    <h3>Pessoas cadastradas</h3>
+    <hr>
+    <ul>
+        {% for pessoa in pessoas %}
+        <li>
+            <b>ID: </b> {{ pessoa.id_pessoa }} |
+            <b>Nome: </b> {{ pessoa.nome }} |
+            <b>Email: </b> {{ pessoa.email }} |
+            <b>CPF: </b> {{ pessoa.cpf }} |
+            <a href="{% url 'alterar_pessoa' pessoa.id_pessoa %}">Alterar</a> |
+            <a href="{% url 'excluir_pessoa' pessoa.id_pessoa %}">Excluir</a>
+        </li>
+        {% empty %}
+        <li>
+            Nenhuma pessoa cadastrada!
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<!-- FIM::lista de pessoas cadastradas -->
+{% endblock %}
