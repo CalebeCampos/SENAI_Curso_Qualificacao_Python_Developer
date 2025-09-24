@@ -1,27 +1,45 @@
 {% extends 'base.html' %}
-{% block title %}CRUD - Lista de pessoas cadastradas{% endblock %}
+{% block title %}CRUD Lista de pessoas{% endblock %}
 {% block content %}
 {% load static %}
-<!-- INI::lista de pessoas cadastradas -->
-<div class="container">
-    <h3>Pessoas cadastradas</h3>
-    <hr>
-    <ul>
+    <!-- container -->
+    <div class="container">
+        <h1>Lista de pessoas</h1>
+        <hr class="mb-5">
+
+        <!-- Cabeçalho: lista de pessoas -->
+        <ul class="row lista-pessoas-cabecalho">
+            <li class="col-12 col-md-2  col-lg-1"><b>ID</b></li>
+            <li class="col-12 col-md-10 col-lg-3"><b>Nome</b></li>
+            <li class="col-12 col-md-8  col-lg-4"><b>Email</b></li>
+            <li class="col-12 col-md-4  col-lg-2"><b>CPF</b></li>
+            <li class="col-6  col-md-6  col-lg-1"><b>Editar</b></li>
+            <li class="col-6  col-md-6  col-lg-1"><b>Excluir</b></li>
+        </ul>
+
+        <!-- Lista: lista de pessoas -->
         {% for pessoa in pessoas %}
-        <li>
-            <b>ID: </b> {{ pessoa.id_pessoa }} |
-            <b>Nome: </b> {{ pessoa.nome }} |
-            <b>Email: </b> {{ pessoa.email }} |
-            <b>CPF: </b> {{ pessoa.cpf }} |
-            <a href="{% url 'alterar_pessoa' pessoa.id_pessoa %}">Alterar</a> |
-            <a href="{% url 'excluir_pessoa' pessoa.id_pessoa %}">Excluir</a>
-        </li>
+            <ul class="row lista-pessoas">
+                <li class="col-12 col-md-2  col-lg-1">{{ pessoa.id_pessoa }}</li>
+                <li class="col-12 col-md-10 col-lg-3">{{ pessoa.nome }}</li>
+                <li class="col-12 col-md-8  col-lg-4">{{ pessoa.email }}</li>
+                <li class="col-12 col-md-4  col-lg-2">{{ pessoa.cpf }}</li>
+                <li class="col-6  col-md-6  col-lg-1">
+                    <a href="{% url 'alterar_pessoa' pessoa.id_pessoa %}">
+                        <img src="{% static 'img/icon_editar.png' %}" alt="Editar" title="Editar" style="width: 24px;">
+                    </a>
+                </li>
+                <li class="col-6 col-md-6 col-lg-1">
+                    <a href="{% url 'excluir_pessoa' pessoa.id_pessoa %}">
+                        <img src="{% static 'img/icon_deletar.png' %}" alt="Deletar" title="Deletar" style="width: 24px;">
+                    </a>
+                </li>
+            </ul>
         {% empty %}
-        <li>
-            Nenhuma pessoa cadastrada!
-        </li>
+            <ul>
+                <li>Nenhuma pessoa cadastrada</li>
+            </ul>
         {% endfor %}
-    </ul>
-</div>
-<!-- FIM::lista de pessoas cadastradas -->
+    </div>
+    <!-- fim do container -->
 {% endblock %}

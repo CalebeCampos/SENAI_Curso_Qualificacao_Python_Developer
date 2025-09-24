@@ -19,6 +19,16 @@ footer {
     text-align: center;
 }
 
+.lista-pessoas-cabecalho {
+    text-align: center;
+    list-style: none;
+    padding: 0px;
+    margin: 0;
+    background-color: #16161d;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px;
+}
+
 .lista-pessoas {
     list-style: none;
     padding: 0px;
@@ -42,3 +52,5 @@ footer {
         margin-bottom: 20px;
     }
 }
+
+
