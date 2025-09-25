@@ -1,0 +1,7 @@
+python -m venv nome_do_ambiente
+nome_do_ambiente\Scripts\activate
+
+
+exemplo...
+python -m venv .venv
+.venv\Scripts\activate
